@@ -4,30 +4,46 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		String direcciónMACdestino = "";
-		String direcciónMACorigen = "";
+		String direcciónMACdestino = "0X ";
+		String direcciónMACorigen = "0X ";
 		String direcciónIPorigen = "";
 		String direcciónIPdestino = "";
-//		5. numeroPuertoOrigen
-//		6. numeroPuertoDestino
-//		7. longitudSegmentoUDP
-//		8. longitudMensajeDHCP
-//		9. tipoMensajeDHCP
-//		10.tipoHardwareRed
-//		11.tamañoDirecciónHardware
-//		12.identificadorTransacción
-//		13.direcciónIPCliente
-//		14. direcciónIP
-//		15. direcciónHardwareCliente
-
-		String cadena = JOptionPane.showInputDialog ( "texto: " );
-		//System.out.println("Su texto es: " + cadena);
-
-		String texto = cadena.replaceAll(" ", "");
-		System.out.println("Su texto es: " + texto);
+		String numeroPuertoOrigen = "";
+		String numeroPuertoDestino = "";
+		String longitudSegmentoUDP = "";
+		String longitudMensajeDHCP = "";
+		String tipoMensajeDHCP = "";
+		String tipoHardwareRed = "";
+		String tamañoDirecciónHardware = "";
+		String identificadorTransacción = "";
+		String direcciónIPCliente = "";
+		String suDirecciónIP = "";
+		String direcciónHardwareCliente = "";
+		String opciones = "";
+		
+		//Variables auxiliares
+		String[] varAuxiliar = new String[20];
+		String[] varAuxiliar2 = new String[20];
+		
+		//String cadena = JOptionPane.showInputDialog ( "texto: " );
+		String cadena = "ffffffffffff0008744f3623080045000148b310000"
+				+ "08011869500000000ffffffff004400430134e97b01010600"
+				+ "3e5e0ce300000000000000000000000000000000000000000"
+				+ "008744f362300000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "0000000000000000000000000000000000000000000000000"
+				+ "00000000000000000000000638253633501017401013d0701"
+				+ "0008744f36233204c0a801650c044e6f686f3c084d5346542"
+				+ "0352e30370b010f03062c2e2f1f21f92bff000000000000000000";
+		
+		String texto = cadena.replaceAll("\\s", "");
 		
 		for(int i=0; i<texto.length();i++) {
-			//Sacamos la MAC ORIGEN
 			if(i<=11) {
 				direcciónMACdestino+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=11)
@@ -48,24 +64,101 @@ public class Principal {
 				if(i%2==1 && i!=0 && i!=67)
 					direcciónIPdestino+=",";
 			}
+			else if(i>67 && i<=71) {
+				numeroPuertoOrigen+=texto.charAt(i);
+			}
+			else if(i>71 && i<=75) {
+				numeroPuertoDestino+=texto.charAt(i);
+			}
+			else if(i>75 && i<=79) {
+				longitudSegmentoUDP+=texto.charAt(i);
+			}
+			else if(i>83 && i<=85) {
+				tipoMensajeDHCP+=texto.charAt(i);
+			}
+			else if(i>85 && i<=87) {
+				tipoHardwareRed+=texto.charAt(i);
+			}
+			else if(i>87 && i<=89) {
+				tamañoDirecciónHardware+=texto.charAt(i);
+			}
+			else if(i>91 && i<=99) {
+				identificadorTransacción+=texto.charAt(i);
+			}
+			else if(i>107 && i<=115) {
+				direcciónIPCliente+=texto.charAt(i);
+				if(i%2==1 && i!=0 && i!=115)
+					direcciónIPCliente+=",";
+			}
+			else if(i>115 && i<=123) {
+				suDirecciónIP+=texto.charAt(i);
+				if(i%2==1 && i!=0 && i!=123)
+					suDirecciónIP+=",";
+			}
+			else if(i>139 && i<=171) {
+				direcciónHardwareCliente+=texto.charAt(i);
+				if(i%2==1 && i!=0 && i!=171)
+					direcciónHardwareCliente+=" - ";
+			}
 			
 		}
-		System.out.println("\n\nMAC Origen: " + direcciónMACdestino);
-		System.out.println("MAC Destino: " + direcciónMACorigen);
+		
+		varAuxiliar = direcciónIPorigen.split(",");
+		direcciónIPorigen = "";
+		for (int i = 0; i < varAuxiliar.length; i++) {
+			direcciónIPorigen += ""+hexadecimalADecimal(varAuxiliar[i])+".";
+		}
+		varAuxiliar = direcciónIPdestino.split(",");
+		direcciónIPdestino="";
+		for (int i = 0; i < varAuxiliar.length; i++) {
+			direcciónIPdestino += ""+hexadecimalADecimal(varAuxiliar[i])+".";
+		}
+		
+		longitudMensajeDHCP = ""+(hexadecimalADecimal(longitudSegmentoUDP)-8);
+		
+		if(tipoMensajeDHCP.equalsIgnoreCase("01")) {
+			tipoMensajeDHCP = "01 = 1 Mensaje de Solicitud";
+		}else {
+			tipoMensajeDHCP = "00 = 0 Mensaje de Respuesta";
+		}
+		
+		if(tipoHardwareRed.equalsIgnoreCase("01")) {
+			tipoHardwareRed = "01 = 1 El dispositivo es Ethernet";
+		}else {
+			tipoHardwareRed = "00 = 0 El dispositivo es 802.11";
+		}
+		
+		varAuxiliar = direcciónIPCliente.split(",");
+		direcciónIPCliente = "";
+		for (int i = 0; i < varAuxiliar.length; i++) {
+			direcciónIPCliente += ""+hexadecimalADecimal(varAuxiliar[i])+".";
+		}
+		
+		varAuxiliar = suDirecciónIP.split(",");
+		suDirecciónIP = "";
+		for (int i = 0; i < varAuxiliar.length; i++) {
+			suDirecciónIP += ""+hexadecimalADecimal(varAuxiliar[i])+".";
+		}
+
+		System.out.println("\n\nMAC Destino: " + direcciónMACdestino);
+		System.out.println("MAC Origen: " + direcciónMACorigen);
 		System.out.println("IP Origen: " + direcciónIPorigen);
 		System.out.println("IP Destino: " + direcciónIPdestino);
-		
+		System.out.println("Número de puerto origen: 0x"+numeroPuertoOrigen +"  Equivale a: " + hexadecimalADecimal(numeroPuertoOrigen));
+		System.out.println("Número de puerto destino: 0x"+numeroPuertoDestino +"  Equivale a: " + hexadecimalADecimal(numeroPuertoDestino));
+		System.out.println("Longitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP));
+		System.out.println("Longitud del mensaje DHCP: "+longitudMensajeDHCP);
+		System.out.println("Tipo de mensaje DHCP: 0x"+tipoMensajeDHCP);
+		System.out.println("Tipo de hardware de red: 0x"+tipoHardwareRed);
+		System.out.println("Tamaño de la dirección de hardware: 0x"+tamañoDirecciónHardware);
+		System.out.println("Identificador de la transacción: 0x"+identificadorTransacción);
+		System.out.println("Identificador de la transacción: 0x"+direcciónIPCliente);
+		System.out.println("Su dirección IP es: 0x"+suDirecciónIP);
+		System.out.println("Dirección hardware del cliente: 0x"+direcciónHardwareCliente);
 		
 		long respuesta = hexadecimalADecimal(cadena);
 		if(respuesta != -1) {
 			
-			String subCadena = cadena.substring(5,10);
-			System.out.println(subCadena);
-			
-			long decimal = hexadecimalADecimal(cadena);
-			String binario = binary(cadena);
-			System.out.printf("El hexadecimal %s es %d en decimal \n", cadena, decimal);
-			System.out.printf("El hexadecimal %s es %s en binario \n", cadena, binario);
 		}else {
 			System.out.println("Caracter No Reconocido");
 		}
