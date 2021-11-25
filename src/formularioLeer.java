@@ -336,7 +336,9 @@ public class formularioLeer extends javax.swing.JFrame {
 				opcion61 = aux61+": Opcion 0x"+auxOpcion+" = "+hexadecimalADecimal(auxOpcion)+", Longitud 0x"+auxLongitud+
 						" = "+hexadecimalADecimal(auxLongitud) +", Tipo de hardware Ethernet ("+auxTipo+")"+
 						", Dirección MAC "+mac;
-		}
+		}else{
+                    opcion61 = aux61+" No tiene opción 61";
+                }
 		
 		aux= opcion55.split(",");
 		auxOpcion =  aux[0];
@@ -365,17 +367,17 @@ public class formularioLeer extends javax.swing.JFrame {
 						hexadecimalADecimal(psr)+": Private/Classless Static Route (Microsoft)\n";
 		}
 		else {
-			opcion55 = " No tiene Opción 55";
+			opcion55 = "0x"+aux55+" No tiene Opción 55";
 		}
 		
 		aux= opcion51.split(",");
 		auxOpcion =  aux[0];
 		String auxTiempo = opcion51.replaceAll(",", "");
 		if(hexadecimalADecimal(auxOpcion) == 51) {
-				opcion51 = " Tiempo de consesión de la deirección IP asignada(lease time)\n0x"+
+				opcion51 = " Tiempo de conexión de la deirección IP asignada(lease time)\n0x"+
 						auxTiempo+" cuatro bytes (representa el tiempo en segundos)";
 		}else {
-			opcion51 = " No tiene Opción 51";
+			opcion51 = "0x"+aux51+" No tiene Opción 51";
 		}
 		
 		aux= opcion54.split(",");
@@ -385,14 +387,13 @@ public class formularioLeer extends javax.swing.JFrame {
 				opcion54 = " Identificador del Servidor DHCP\n0x"+
 						auxIdentificador+" cuatro bytes dela dirección IP del servidor DHCP";
 		}else {
-			opcion54 = " No tiene Opción 54 ";
+			opcion54 = "0x"+aux54+" No tiene Opción 54 ";
 		}
 
                 txaRes.setText("MAC Destino:"+direcciónMACdestino+"\nMAC Origen:"+direcciónMACorigen+"\nIP Origen: " + direcciónIPorigen+
                         "\nIP Destino: " + direcciónIPdestino+"\nNúmero de puerto origen: 0x"+numeroPuertoOrigen +"  Equivale a: " + hexadecimalADecimal(numeroPuertoOrigen)+
                         "\nNúmero de puerto destino: 0x"+numeroPuertoDestino +"  Equivale a: " + hexadecimalADecimal(numeroPuertoDestino)+
 		"\nLongitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP)+
-                        "\nLongitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP)+
                         "\nLongitud del mensaje DHCP: "+longitudMensajeDHCP+"\nTipo de mensaje DHCP: 0x"+tipoMensajeDHCP+"\nTipo de hardware de red: 0x"+tipoHardwareRed+
                         "\nTamaño de la dirección de hardware: 0x"+tamañoDirecciónHardware+"\nIdentificador de la transacción: 0x"+identificadorTransacción+"\nDirección IP del cliente: 0x"+direcciónIPCliente+
                         "\nSu dirección IP es: 0x"+suDirecciónIP+"\nDirección hardware del cliente: 0x"+direcciónHardwareCliente+"\n\nOpción 53: 0x"+opcion53+
