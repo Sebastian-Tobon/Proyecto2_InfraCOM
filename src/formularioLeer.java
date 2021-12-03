@@ -324,7 +324,7 @@ public class formularioLeer extends javax.swing.JFrame {
 		if(tipoMensajeDHCP.equalsIgnoreCase("01")) {
 			tipoMensajeDHCP = "01 = 1 Mensaje de Solicitud";
 		}else {
-			tipoMensajeDHCP = "00 = 0 Mensaje de Respuesta";
+			tipoMensajeDHCP = "02 = 2 Mensaje de Respuesta";
 		}
 		
 		if(tipoHardwareRed.equalsIgnoreCase("01")) {
@@ -432,7 +432,8 @@ public class formularioLeer extends javax.swing.JFrame {
                         "\n\nNúmero de puerto destino: 0x"+numeroPuertoDestino +"  Equivale a: " + hexadecimalADecimal(numeroPuertoDestino)+
                         "\n\nLongitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP)+
                         "\n\nLongitud del mensaje DHCP: "+longitudMensajeDHCP+"\n\nTipo de mensaje DHCP: 0x"+tipoMensajeDHCP+"\n\nTipo de hardware de red: 0x"+tipoHardwareRed+
-                        "\n\nTamaño de la dirección de hardware: 0x"+tamañoDirecciónHardware+"\n\nIdentificador de la transacción: 0x"+identificadorTransacción+"\n\nDirección IP del cliente: 0x"+direcciónIPCliente+
+                        "\n\nTamaño de la dirección de hardware: 0x"+tamañoDirecciónHardware+" La dirección de hardware ocupa 6 bytes." +
+                        "\n\nIdentificador de la transacción: 0x"+identificadorTransacción+"\n\nDirección IP del cliente: 0x"+direcciónIPCliente+
                         "\n\nSu dirección IP es: 0x"+suDirecciónIP+"\n\nDirección hardware del cliente: 0x"+direcciónHardwareCliente+"\n\nOpción 53: 0x"+opcion53+
                         "\n\nOpción 61: 0x"+opcion61+"\n\nOpción 55: "+opcion55+"\n\nOpción 51: "+opcion51+"\n\nOpción 54: "+opcion54);
                 //--- FIN ---
