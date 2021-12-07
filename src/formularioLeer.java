@@ -12,8 +12,11 @@ import javax.swing.JOptionPane;
  */
 
 /**
+ * 2 Proyecto de Infraestructura Computacional 
  *
- * @author Sebastian
+ * @author Sebastian Tobon Alcaraz
+ * @author Sebastian Londoño Valencia
+ * @author Rodrigo Acosta Restrepo
  */
 public class formularioLeer extends javax.swing.JFrame {
 
@@ -22,7 +25,8 @@ public class formularioLeer extends javax.swing.JFrame {
      */
     public formularioLeer() {
         initComponents();
-        this.getContentPane().setBackground(Color.LIGHT_GRAY);
+        txaArchivo.setLineWrap(true);this.getContentPane().setBackground(Color.LIGHT_GRAY);
+        
     }
 
     /**
@@ -43,13 +47,16 @@ public class formularioLeer extends javax.swing.JFrame {
         txaRes = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnEnviar = new javax.swing.JButton();
+        jtTexto = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("PROTOCOLO DHCP");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Seleccionar Archivo:");
 
         btnSel.setText("Seleccionar");
@@ -76,6 +83,24 @@ public class formularioLeer extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Contenido del Frame Ethernet");
 
+        btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+
+        jtTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtTextoActionPerformed(evt);
+            }
+        });
+        jtTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTextoKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,72 +108,59 @@ public class formularioLeer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)
-                        .addGap(22, 22, 22))
+                        .addComponent(jtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnSel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(438, 438, 438)
-                                .addComponent(jLabel4)
-                                .addGap(0, 219, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(btnSel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+                .addGap(11, 11, 11)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviar)
+                    .addComponent(btnSel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void leearArchivo() {
-        String tex = "";
-        JFileChooser fc = new JFileChooser();
-        fc.showOpenDialog(null);
-        File archivo = fc.getSelectedFile();
-        try {
-            FileReader fr = new FileReader(archivo);
-            BufferedReader br = new BufferedReader(fr);
-            
-            String linea = "";
-            while (((linea = br.readLine()) != null)) {
-                tex += linea + "\n";
-            }
-            txaArchivo.setText(tex);
-            JOptionPane.showMessageDialog(null, "Archivo leido Correctamente");
-        } catch (Exception e) {
-
-        }
+    public void protocoloDHCP(String tex){
         
-        String direcciónMACdestino = "0X ";
+        //Variables 
+                String direcciónMACdestino = "0X ";
 		String direcciónMACorigen = "0X ";
 		String direcciónIPorigen = "";
 		String direcciónIPdestino = "";
@@ -180,90 +192,111 @@ public class formularioLeer extends javax.swing.JFrame {
 		String auxOpcion = "";
 		String auxLongitud = "";
 		String auxTipo = "";
-                
+        
+    //Eliminar los espacio y saltos de linea del texto 
                 String texto = tex.replaceAll("\\s", "");
         
-        for(int i=0; i<texto.length();i++) {
+                //--- Recorrer el texto---
+                //Dirección MAC destino
+                for(int i=0; i<texto.length();i++) {
 			if(i<=11) {
 				direcciónMACdestino+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=11)
 					direcciónMACdestino+=" - ";
 			}
+                        //Dirección MAC origen
 			else if(i>11 && i<=23) {
 				direcciónMACorigen+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=23)
 					direcciónMACorigen+=" - ";
 			}
+                        //Dirección IP origen
 			else if(i>51 && i<=59) {
 				direcciónIPorigen+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=59)
 					direcciónIPorigen+=",";
 			}
+                        //Dirección IP destino
 			else if(i>59 && i<=67) {
 				direcciónIPdestino+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=67)
 					direcciónIPdestino+=",";
 			}
+                        //Número de puerto origen
 			else if(i>67 && i<=71) {
 				numeroPuertoOrigen+=texto.charAt(i);
 			}
+                         //Número de puerto destino
 			else if(i>71 && i<=75) {
 				numeroPuertoDestino+=texto.charAt(i);
 			}
+                        //Longitud del segmento UDP
 			else if(i>75 && i<=79) {
 				longitudSegmentoUDP+=texto.charAt(i);
 			}
+                        //Tipo de mensaje DHCP
 			else if(i>83 && i<=85) {
 				tipoMensajeDHCP+=texto.charAt(i);
 			}
+                        //Tipo de Hardware de Red
 			else if(i>85 && i<=87) {
 				tipoHardwareRed+=texto.charAt(i);
 			}
+                        //Tamaño de la dirección del Hardware
 			else if(i>87 && i<=89) {
 				tamañoDirecciónHardware+=texto.charAt(i);
 			}
+                        //Identificador de Transacción
 			else if(i>91 && i<=99) {
 				identificadorTransacción+=texto.charAt(i);
 			}
+                        //Dirección IP del Cliente
 			else if(i>107 && i<=115) {
 				direcciónIPCliente+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=115)
 					direcciónIPCliente+=",";
 			}
+                        //Su Dirección IP 
 			else if(i>115 && i<=123) {
 				suDirecciónIP+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=123)
 					suDirecciónIP+=",";
 			}
+                        //Dirección Hardware del Cliente
 			else if(i>139 && i<=171) {
 				direcciónHardwareCliente+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=171)
 					direcciónHardwareCliente+=" - ";
 			}
+                        //Opción 53
 			else if(i>563 && i<=569) {
 				opcion53+=texto.charAt(i);
 				aux53+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=569)
 					opcion53+=",";
 			}
+                        //Opción 61
 			else if(i>575 && i<=593) {
 				opcion61+=texto.charAt(i);
 				aux61+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=593)
 					opcion61+=",";
 			}
+                        //Opción 55, 1, 3 y 6
 			else if(i>637 && i<=661) {
 				opcion55+=texto.charAt(i);
 				aux55+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=661)
 					opcion55+=",";
 			}
+                        //Opción 51
 			else if(i>661 && i<=665) {
 				opcion51+=texto.charAt(i);
 				aux51+=texto.charAt(i);
 				if(i%2==1 && i!=0 && i!=665)
 					opcion51+=",";
 			}
+                        //Opción 54
 			else if(i>673 && i<=677) {
 				opcion54+=texto.charAt(i);
 				aux54+=texto.charAt(i);
@@ -272,7 +305,9 @@ public class formularioLeer extends javax.swing.JFrame {
 			}
 			
 		}
+                //--- FIN Recorrido del texto ---
 		
+                // conversión de hex a dec y validaciones
 		varAuxiliar = direcciónIPorigen.split(",");
 		direcciónIPorigen = "";
 		for (int i = 0; i < varAuxiliar.length; i++) {
@@ -289,7 +324,7 @@ public class formularioLeer extends javax.swing.JFrame {
 		if(tipoMensajeDHCP.equalsIgnoreCase("01")) {
 			tipoMensajeDHCP = "01 = 1 Mensaje de Solicitud";
 		}else {
-			tipoMensajeDHCP = "00 = 0 Mensaje de Respuesta";
+			tipoMensajeDHCP = "02 = 2 Mensaje de Respuesta";
 		}
 		
 		if(tipoHardwareRed.equalsIgnoreCase("01")) {
@@ -336,7 +371,9 @@ public class formularioLeer extends javax.swing.JFrame {
 				opcion61 = aux61+": Opcion 0x"+auxOpcion+" = "+hexadecimalADecimal(auxOpcion)+", Longitud 0x"+auxLongitud+
 						" = "+hexadecimalADecimal(auxLongitud) +", Tipo de hardware Ethernet ("+auxTipo+")"+
 						", Dirección MAC "+mac;
-		}
+		}else{
+                    opcion61 = aux61+" No tiene opción 61";
+                }
 		
 		aux= opcion55.split(",");
 		auxOpcion =  aux[0];
@@ -365,17 +402,17 @@ public class formularioLeer extends javax.swing.JFrame {
 						hexadecimalADecimal(psr)+": Private/Classless Static Route (Microsoft)\n";
 		}
 		else {
-			opcion55 = " No tiene Opción 55";
+			opcion55 = "0x"+aux55+" No tiene Opción 55, 1, 3 y 6";
 		}
 		
 		aux= opcion51.split(",");
 		auxOpcion =  aux[0];
 		String auxTiempo = opcion51.replaceAll(",", "");
 		if(hexadecimalADecimal(auxOpcion) == 51) {
-				opcion51 = " Tiempo de consesión de la deirección IP asignada(lease time)\n0x"+
+				opcion51 = " Tiempo de conexión de la deirección IP asignada(lease time)\n0x"+
 						auxTiempo+" cuatro bytes (representa el tiempo en segundos)";
 		}else {
-			opcion51 = " No tiene Opción 51";
+			opcion51 = "0x"+aux51+" No tiene Opción 51";
 		}
 		
 		aux= opcion54.split(",");
@@ -385,19 +422,23 @@ public class formularioLeer extends javax.swing.JFrame {
 				opcion54 = " Identificador del Servidor DHCP\n0x"+
 						auxIdentificador+" cuatro bytes dela dirección IP del servidor DHCP";
 		}else {
-			opcion54 = " No tiene Opción 54 ";
+			opcion54 = "0x"+aux54+" No tiene Opción 54 ";
 		}
-
-                txaRes.setText("MAC Destino:"+direcciónMACdestino+"\nMAC Origen:"+direcciónMACorigen+"\nIP Origen: " + direcciónIPorigen+
-                        "\nIP Destino: " + direcciónIPdestino+"\nNúmero de puerto origen: 0x"+numeroPuertoOrigen +"  Equivale a: " + hexadecimalADecimal(numeroPuertoOrigen)+
-                        "\nNúmero de puerto destino: 0x"+numeroPuertoDestino +"  Equivale a: " + hexadecimalADecimal(numeroPuertoDestino)+
-		"\nLongitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP)+
-                        "\nLongitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP)+
-                        "\nLongitud del mensaje DHCP: "+longitudMensajeDHCP+"\nTipo de mensaje DHCP: 0x"+tipoMensajeDHCP+"\nTipo de hardware de red: 0x"+tipoHardwareRed+
-                        "\nTamaño de la dirección de hardware: 0x"+tamañoDirecciónHardware+"\nIdentificador de la transacción: 0x"+identificadorTransacción+"\nDirección IP del cliente: 0x"+direcciónIPCliente+
-                        "\nSu dirección IP es: 0x"+suDirecciónIP+"\nDirección hardware del cliente: 0x"+direcciónHardwareCliente+"\n\nOpción 53: 0x"+opcion53+
-                        "\n\nOpción 61: 0x"+opcion61+"\n\nOpción 55: "+opcion55+"\nOpción 51: "+opcion51+"\n\nOpción 54: "+opcion54);
+                //--- FIN Conversiones y Vaidaciones ----
                 
+                //--- Area de Texto Resultado ----
+                txaRes.setText("MAC Destino:"+direcciónMACdestino+"\n\nMAC Origen:"+direcciónMACorigen+"\n\nIP Origen: " + direcciónIPorigen+
+                        "\n\nIP Destino: " + direcciónIPdestino+"\n\nNúmero de puerto origen: 0x"+numeroPuertoOrigen +"  Equivale a: " + hexadecimalADecimal(numeroPuertoOrigen)+
+                        "\n\nNúmero de puerto destino: 0x"+numeroPuertoDestino +"  Equivale a: " + hexadecimalADecimal(numeroPuertoDestino)+
+                        "\n\nLongitud del segmento UDP: 0x"+longitudSegmentoUDP +"  Equivale a: " + hexadecimalADecimal(longitudSegmentoUDP)+
+                        "\n\nLongitud del mensaje DHCP: "+longitudMensajeDHCP+"\n\nTipo de mensaje DHCP: 0x"+tipoMensajeDHCP+"\n\nTipo de hardware de red: 0x"+tipoHardwareRed+
+                        "\n\nTamaño de la dirección de hardware: 0x"+tamañoDirecciónHardware+" La dirección de hardware ocupa 6 bytes." +
+                        "\n\nIdentificador de la transacción: 0x"+identificadorTransacción+"\n\nDirección IP del cliente: 0x"+direcciónIPCliente+
+                        "\n\nSu dirección IP es: 0x"+suDirecciónIP+"\n\nDirección hardware del cliente: 0x"+direcciónHardwareCliente+"\n\nOpción 53: 0x"+opcion53+
+                        "\n\nOpción 61: 0x"+opcion61+"\n\nOpción 55: "+opcion55+"\n\nOpción 51: "+opcion51+"\n\nOpción 54: "+opcion54);
+                //--- FIN ---
+                
+                //--- sout de pruebas
 		System.out.println("\n\nMAC Destino: " + direcciónMACdestino);
 		System.out.println("\nMAC Origen: " + direcciónMACorigen);
 		System.out.println("\nIP Origen: " + direcciónIPorigen);
@@ -419,7 +460,29 @@ public class formularioLeer extends javax.swing.JFrame {
 		System.out.println("\nOpción 51: "+opcion51);
 		System.out.println("\nOpción 54: "+opcion54);
     }
+    //Metodo que lee un archivo seleccionado de la PC
+    public void leearArchivo() {
+        
+        String tex = "";
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(null);
+        File archivo = fc.getSelectedFile();
+        try {
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = "";
+            while (((linea = br.readLine()) != null)) {
+                tex += linea + "\n";
+            }
+            txaArchivo.setText(tex);
+            JOptionPane.showMessageDialog(null, "Archivo leido Correctamente");
+            protocoloDHCP(tex);
+        } catch (Exception e) {
+
+        }     
+    }
     
+    //Metodo para tomar un caracter y verificar si pértence a hexadecimal
     public static int caracterHexadecimalADecimal(char caracter) {
 		switch (caracter) {
 		case 'a':
@@ -459,31 +522,49 @@ public class formularioLeer extends javax.swing.JFrame {
 		}
 	}
 
+        //Metodo que realiza la conversión de hexadecial a decinmal
 	public static long hexadecimalADecimal(String hexadecimal) {
 		long decimal = 0;
 		// Saber en cuál posición de la cadena (de izquierda a derecha) vamos
 		int potencia = 0;
 		// Recorrer la cadena de derecha a izquierda
-		
 			for (int x = hexadecimal.length() - 1; x >= 0; x--) {
 				int valor = caracterHexadecimalADecimal(hexadecimal.charAt(x));
-				if(valor != -1){
 				long elevado = (long) Math.pow(16, potencia) * valor;
 				decimal += elevado;
 				// Avanzar en la potencia
 				potencia++;
-				}else {
-					return valor;
-				}
 			}
-		
 		return decimal;
 	}
+        
+        public void tomarTexto(String msj){
+            String rMsj = msj;
+            txaArchivo.setText(rMsj);
+            protocoloDHCP(rMsj);
+        }
         
     private void btnSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelActionPerformed
         // TODO add your handling code here:
        leearArchivo();
     }//GEN-LAST:event_btnSelActionPerformed
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        if (jtTexto.getText().length() > 0) {
+            tomarTexto(jtTexto.getText());
+        } else {
+        }
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void jtTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtTextoActionPerformed
+
+    private void jtTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTextoKeyTyped
+        if (jtTexto.getText().length() > 2000) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtTextoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -521,6 +602,7 @@ public class formularioLeer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnSel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -528,6 +610,8 @@ public class formularioLeer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jtTexto;
     private javax.swing.JTextArea txaArchivo;
     private javax.swing.JTextArea txaRes;
     // End of variables declaration//GEN-END:variables
